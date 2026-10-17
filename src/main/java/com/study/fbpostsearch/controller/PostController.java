@@ -1,7 +1,12 @@
-package com.study.fbpostsearch.post;
+package com.study.fbpostsearch.controller;
 
+import com.study.fbpostsearch.contract.CreatePostRequest;
+import com.study.fbpostsearch.contract.LikePostRequest;
+import com.study.fbpostsearch.contract.PostResponse;
+import com.study.fbpostsearch.service.PostService;
 import jakarta.validation.Valid;
 import java.net.URI;
+import java.util.UUID;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,7 +31,10 @@ public class PostController {
     }
 
     @PostMapping("/{id}/like")
-    public PostResponse likePost(@PathVariable long id) {
-        return postService.like(id);
+    public PostResponse likePost(
+            @PathVariable UUID id,
+            @Valid @RequestBody LikePostRequest request
+    ) {
+        return postService.like(id, request.userId());
     }
 }
