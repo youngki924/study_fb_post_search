@@ -1,0 +1,5 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/${POSTGRES_DB:fb_post_search}
+    username: ${POSTGRES_USER:postgres}
+    password: ${POSTGRES_PASSWORD:docker}
